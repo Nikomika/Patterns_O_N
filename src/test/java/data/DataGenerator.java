@@ -29,15 +29,15 @@ public class DataGenerator {
         var faker = new Faker(new Locale(locate));
         return faker.name().lastName() + " " + faker.name().firstName();
     }
-    public static String generatePhone(String locate) {
-        var faker = new Faker(new Locale(locate));
-        return faker.phoneNumber().phoneNumber();
+    public static String generatePhone() {
+        var phone = new Faker().regexify("+7[1-9]{10}");
+        return phone;
     }
     public static class Registration {
         private Registration (){
         }
         public static UserInfo generateUser(String locale) {
-            return new UserInfo(generateCity(), generateName(locale), generatePhone(locale));
+            return new UserInfo(generateCity(), generateName(locale), generatePhone());
         }
     }
     @Value
